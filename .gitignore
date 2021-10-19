@@ -349,3 +349,6 @@ fabric.properties
 *.max
 
 # End of https://www.toptal.com/developers/gitignore/api/images
+
+*.csv
+*.mat
