@@ -55,5 +55,5 @@ class ImageDataLoader:
         blob = {'data': img, 'gt_density': density, 'fname': fname}
         return blob
 
-    def get_num_samples(self):
+    def __len__(self):
         return self.num_samples
