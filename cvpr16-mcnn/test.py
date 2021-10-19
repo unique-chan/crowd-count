@@ -34,13 +34,13 @@ os.makedirs(density_maps_path, exist_ok=True)
 
 # crowd-counter
 net = CrowdCounter()
-net.load_net(args.model_path)  # h5 -> net
+utils.load_net(args.model_path, net)  # h5 -> net
 if torch.cuda.is_available():
     net.cuda()
     net.eval()
 
 # inference
-with torch.no_grad:
+with torch.no_grad():
     mae, mse = 0.0, 0.0
     loader = ImageDataLoader(args.data_path, args.gt_path, shuffle=False, gt_downsample=True, pre_load=True)
     for blob in tqdm(loader, desc='Test Inference ', mininterval=0.01):
