@@ -14,8 +14,8 @@ class ImageDataLoader:
         self.gt_path = gt_path
         self.gt_downsample = gt_downsample
         # self.data_files = sorted(glob.glob(os.path.join(self.data_path, '*.jpg')))
-        self.data_files = [file_name for file_name in os.listdir(self.data_path)
-                           if os.path.isfile(os.path.join(self.data_path, file_name))]
+        self.data_files = [fname for fname in os.listdir(self.data_path)
+                           if os.path.isfile(os.path.join(self.data_path, fname))]
         self.shuffle = shuffle
         self.num_samples = len(self.data_files)
         self.blob_dic = {}
