@@ -1,6 +1,8 @@
 import os
 import cv2
 import numpy as np
+import h5py
+import torch
 
 
 def save_density_map(density_map, output_dir, fname):
@@ -18,3 +20,10 @@ def display_result(img, gt_density, estimated_density):
         img = cv2.resize(img, (estimated_density.shape[1], estimated_density.shape[0]))
     result_img = np.hstack((img, gt_density, estimated_density)).astype(np.uint8)
     cv2.imshow('Result', result_img)
+
+
+def load_net(fname, net):
+    h5f = h5py.File(fname, mode='r')
+    for k, v in net.state_dict().items():
+        param = torch.from_numpy(np.asarray(h5f[k]))
+        v.copy_(param)
